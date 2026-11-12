@@ -1,0 +1,18 @@
+groups:
+  - name: sentinelops-alerts
+    rules:
+      - alert: AppDown
+        expr: up{job="sentinelops-app"} == 0
+        for: 15s
+        labels:
+          severity: critical
+        annotations:
+          summary: "SentinelOps app is down"
+
+      - alert: HighErrorRate
+        expr: sum(rate(http_requests_total{status=~"5.."}[1m])) > 0.1
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "App is returning many 5xx errors"
