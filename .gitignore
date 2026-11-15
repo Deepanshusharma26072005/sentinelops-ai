@@ -3,3 +3,7 @@ __pycache__/
 .venv/
 .env
 .git/
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
