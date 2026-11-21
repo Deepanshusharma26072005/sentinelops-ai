@@ -1,0 +1,9 @@
+[
+  {
+    "name": "stdemorisky",
+    "allowBlobPublicAccess": true,
+    "enableHttpsTrafficOnly": false,
+    "minimumTlsVersion": "TLS1_0",
+    "networkRuleSet": {"defaultAction": "Allow"}
+  }
+]

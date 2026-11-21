@@ -1,0 +1,10 @@
+[
+  {
+    "name": "nsg-demo-risky",
+    "securityRules": [
+      {"name": "ssh-from-anywhere", "access": "Allow", "direction": "Inbound", "sourceAddressPrefix": "*", "destinationPortRange": "22"},
+      {"name": "everything-open", "access": "Allow", "direction": "Inbound", "sourceAddressPrefix": "0.0.0.0/0", "destinationPortRange": "*"},
+      {"name": "app-open", "access": "Allow", "direction": "Inbound", "sourceAddressPrefix": "Internet", "destinationPortRange": "8000"}
+    ]
+  }
+]
