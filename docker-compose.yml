@@ -23,3 +23,15 @@ services:
       - "3000:3000"
     depends_on:
       - prometheus
+
+  healer:
+    build: ./healer
+    container_name: sentinelops-healer
+    restart: unless-stopped
+    environment:
+      TARGET_URL: http://app:8000/health
+      TARGET_CONTAINER: sentinelops-app
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      - app

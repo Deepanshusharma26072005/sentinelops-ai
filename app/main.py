@@ -12,6 +12,7 @@ REQUESTS = Counter(
 LATENCY = Histogram(
     "http_request_duration_seconds", "Request latency in seconds", ["path"]
 )
+state = {"healthy": True}
 
 
 @app.middleware("http")
@@ -34,7 +35,15 @@ def home():
 
 @app.get("/health")
 def health():
+    if not state["healthy"]:
+        raise HTTPException(status_code=503, detail="unhealthy")
     return {"status": "ok"}
+
+
+@app.get("/break")
+def break_app():
+    state["healthy"] = False
+    return {"message": "app is now unhealthy"}
 
 
 @app.get("/slow")
